@@ -52,10 +52,55 @@ area, are completed automatically. For the purpose of this project,
 non-gameplay, aesthetic elements of a beatmap, such as background images and
 storyboard elements, are not considered relevant.
 
-There are currently no existing projects that tackle this problem to a
-sufficient degree, however programs do exist to solve this problem for other
+There are currently existing projects that tackle similar problems for other
 rhythm games. One such example is "Dancing Monkeys"[2], which generates
-"stepfiles" for the rhythm game "Stepmania".
+"stepfiles" for the rhythm game "Stepmania". In comparison to "osu!",
+"Stepmania" uses a different approach to the rhythm game genre, itself being a
+clone of the arcade based game "Dance Dance Revolution". "Stepmania" is designed
+with the limitation that the user input is typically completed via the player,
+using their feet to step on arrows which correspond to the arrows displayed on
+screen. As such, there is a limit of using only four directional based arrows as
+input to not overwhelm the player in gameplay, as input requires significant
+physical movement. Furthermore, the stepfile must not require inputs from the
+player that are too fast or may be impossible to complete using only their feet
+as input. While "Stepmania" can also be played using a keyboard, where the player
+is therefore able to complete faster and more complicated inputs using their
+fingers, this is not considered part of the problem domain of
+"Dancing Monkeys"[3].
+
+The requirements of a stepfile in "Stepmania" lead to characteristics where
+player input is intended to resemble dancing to the beat of the audio. This is
+represented in the methods chosen for audio feature detection and stepfile
+generation in "Dancing Monkeys". In summary, it uses Audio Self-Similarity to
+both determine the beat of a given audio stream and to find patterns throughout
+the audio that resemble song structure. Energy levels are then calculated at the
+given beat points in which the positive representation of the waveform is used.
+Low frequency (bass) instruments in the audio are found to "dominate the energy
+representation." The Audio Self-Similarity data is then used to correlate the 
+energy values at beat-points to repeatable patterns which can then be converted
+to stepfile arrow patterns in the generated stepfile.
+
+In comparison, there is a greater fidelity in audio feature representation in
+an "osu!" beatmap. Input from a computer pointing device can, more quickly and
+accurately, be positioned over screen elements, such that hit objects can be
+freely placed in the two-dimensional plane of the play area. From observation,
+an "osu!" beatmap's structure is more ideally suited to representing individual
+notes and melody rather that patterns that represent variations in beat over
+time. As such it would be more pertinent to use audio feature extraction methods
+that favour detection of both onsets and transients rather than beat, as found
+in "Dancing Monkeys".
+
+The placement of the hit objects according to audio features can be seen as 
+entirely player subjective. As such, the use of any given algorithm to determine
+such hit object placements can be difficult to classify as "good" or "bad". As a
+result an approach to solve this is to take an aggregate judgement on hit object 
+placement, using data from existing beatmaps that have been determined 
+satisfactory from a community standard. This would involve using a machine
+learning model, trained from the data set of the existing beatmaps. A suitable
+implementation of this is the use of an artificial neural network, specifically
+a convolution neural network, which have been found suitable for processing 
+two-dimension data[4], in this case both time period energy values of audio data.
+
 
 ## Objectives
 
@@ -159,3 +204,7 @@ compatible license.
 [1] osu! wiki "Glossary - Beatmap Submission System" `https://osu.ppy.sh/help/wiki/Glossary/#bss` [Accessed: 12 October 2017]
 
 [2] Monket "Dancing Monkeys - Karl O'Keeffe" `https://monket.net/dancing-monkeys/` [Accessed: 12 October 2017]
+
+[3] Dancing Monkeys: Automated creation of step files for Dance Dance Revolution `https://monket.net/dancing-monkeys/DancingMonkeys.pdf` [Accessed: 12 October 2017]
+
+[4] Yann LeCun - Deep Learning and the Future of AI `https://indico.cern.ch/event/510372/` [Accessed: 15 October 2017]
