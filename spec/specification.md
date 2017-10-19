@@ -161,12 +161,13 @@ methodology. A Kanban framework will be used to visualise workflow of completion
 of software features. Software features will mostly be added as a result of the
 prior research, but additional features may be added mid-development if
 necessary. A focus on output of usable software will be taken where a new
-version of the software component should be output in an functional state, in one
-to two week intervals.
+version of the software component should be output in an functional state, in
+one to two week intervals.
 
-## Timetable
+## Timeline
 
-![Project timetable](./timetable.png)
+Figure 0.1, found at the end of this document, outlines the time periods at
+which project tasks will be completed.
 
 ## Resources
 
@@ -208,3 +209,5 @@ compatible license.
 [3] Dancing Monkeys: Automated creation of step files for Dance Dance Revolution `https://monket.net/dancing-monkeys/DancingMonkeys.pdf` [Accessed: 12 October 2017]
 
 [4] Yann LeCun - Deep Learning and the Future of AI `https://indico.cern.ch/event/510372/` [Accessed: 15 October 2017]
+
+![Project timeline](./timeline.png)
